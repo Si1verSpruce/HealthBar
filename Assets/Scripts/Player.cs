@@ -17,16 +17,23 @@ public class Player : MonoBehaviour
         remove => _healthChanged.RemoveListener(value);
     }
 
-    public void ChangeHealth(float value)
+    public void TakeDamage(float value)
+    {
+        float newHealth = _health - value;
+
+        ChangeHealth(newHealth);
+    }
+
+    public void TakeHealing(float value)
     {
         float newHealth = _health + value;
 
-        if (newHealth > _maxHealth)
-            _health = _maxHealth;
-        else if (newHealth < 0)
-            _health = 0;
-        else
-            _health = newHealth;
+        ChangeHealth(newHealth);
+    }
+
+    private void ChangeHealth(float value)
+    {
+        _health = Mathf.Clamp(value, 0, _maxHealth);
 
         _healthChanged.Invoke();
     }
