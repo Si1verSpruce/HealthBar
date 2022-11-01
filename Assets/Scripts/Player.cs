@@ -8,15 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _health;
 
-    private UnityEvent _healthChanged = new UnityEvent();
-
     public float MaxHealth => _maxHealth;
     public float Health => _health;
-    public event UnityAction HealthChanged
-    {
-        add => _healthChanged.AddListener(value);
-        remove => _healthChanged.RemoveListener(value);
-    }
+
+    public event UnityAction HealthChanged;
 
     public void TakeDamage(float value)
     {
@@ -36,6 +31,6 @@ public class Player : MonoBehaviour
     {
         _health = Mathf.Clamp(value, 0, _maxHealth);
 
-        _healthChanged.Invoke();
+        HealthChanged.Invoke();
     }
 }

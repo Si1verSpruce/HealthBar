@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Slider))] 
+[RequireComponent(typeof(Slider))]
 
 public class Bar : MonoBehaviour
 {
@@ -33,12 +33,9 @@ public class Bar : MonoBehaviour
         float newValue = _player.Health / _player.MaxHealth;
 
         if (_activeCoroutine != null)
-        {
             StopCoroutine(_activeCoroutine);
-            _activeCoroutine = StartCoroutine(ChangeValue(newValue));
-        }
-        else
-            _activeCoroutine = StartCoroutine(ChangeValue(newValue));
+
+        _activeCoroutine = StartCoroutine(ChangeValue(newValue));
     }
 
     private IEnumerator ChangeValue(float targetValue)
