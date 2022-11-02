@@ -31,6 +31,6 @@ public class Player : MonoBehaviour
     {
         _health = Mathf.Clamp(value, 0, _maxHealth);
 
-        HealthChanged.Invoke();
+        HealthChanged?.Invoke();
     }
 }
